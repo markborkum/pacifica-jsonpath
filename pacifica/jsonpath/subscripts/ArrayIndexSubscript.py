@@ -1,0 +1,33 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import json
+from typing import Generator
+
+from pacifica.jsonpath.Node import MatchData
+from pacifica.jsonpath.Subscript import Subscript
+
+class ArrayIndexSubscript(Subscript):
+    def __init__(self, index:int):
+        super(ArrayIndexSubscript, self).__init__()
+
+        self.index = index
+
+    def __jsonpath__(self) -> Generator[str, None, None]:
+        yield json.dumps(self.index)
+
+    def match(self, root_value:object, current_value:object) -> Generator[MatchData, None, None]:
+        if isinstance(current_value, list):
+            if self.index < 0:
+                new_index = self.index + len(current_value)
+
+                if (new_index >= 0) and (new_index < len(current_value)):
+                    return [MatchData(self, root_value, current_value[new_index])]
+                else:
+                    return []
+            elif self.index < len(current_value):
+                return [MatchData(self, root_value, current_value[self.index])]
+            else:
+                return []
+        else:
+            return []
