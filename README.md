@@ -14,13 +14,15 @@ This repository contains the Pacifica implementation of [JSONPath](http://goessn
 The `pacifica.jsonpath.Path.Path` class represents the abstract syntax tree for a Pacifica JSONPath.
 
 ```python
->>> import json
 >>> s = '{"hello":"Hello, world!"}'
 '{"hello":"Hello, world!"}'
->>> json.loads(s)
+>>> import json
+>>> d = json.loads(s)
 {'hello':'Hello, world!'}
 >>> from pacifica.jsonpath.Path import Path
->>> list(map(lambda md: md.current_value, Path.parse_str('$["hello"]').match(json.loads(s))))
+>>> p = Path.parse_str('$["hello"]')
+<pacifica.jsonpath.Path.Path object>
+>>> list(map(lambda match: match.current_value, p.match(d)))
 ['Hello, world!']
 ```
 
