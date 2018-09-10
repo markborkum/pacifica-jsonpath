@@ -19,8 +19,8 @@ class RecursiveDescentNode(Node):
     def __jsonpath__(self) -> Generator[str, None, None]:
         yield '..'
 
-        for new_token in self.next_node.__jsonpath__():
-            yield new_token
+        for next_node_token in self.next_node.__jsonpath__():
+            yield next_node_token
 
     def match(self, root_value:object, current_value:object) -> Generator[MatchData, None, None]:
         # NOTE Depth-first
