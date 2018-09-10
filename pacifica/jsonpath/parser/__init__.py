@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import antlr4
-import io
 
 from pacifica.jsonpath.expressions.OperatorExpression import AndVariadicOperatorExpression, EqualBinaryOperatorExpression, GreaterThanBinaryOperatorExpression, GreaterThanOrEqualToBinaryOperatorExpression, LessThanBinaryOperatorExpression, LessThanOrEqualToBinaryOperatorExpression, NotEqualBinaryOperatorExpression, NotUnaryOperatorExpression, OrVariadicOperatorExpression
 from pacifica.jsonpath.expressions.SomeExpression import SomeExpression
