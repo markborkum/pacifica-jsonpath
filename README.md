@@ -26,7 +26,7 @@ The `pacifica.jsonpath.Path.Path` class represents the abstract syntax tree for 
 ['Hello, world!']
 ```
 
-This class is constructed with respect to the given instance of the `pacifica.jsonpath.Path.RootNode` class (viz., the `node` attribute).
+This class is constructed with respect to the given instance of the `pacifica.jsonpath.Path.RootNode` class (viz., the `node` property).
 
 #### `parse_str(strdata)` class method
 
@@ -49,7 +49,7 @@ Tests if two instances are equal.
 
 Returns the string representation of this instance.
 
-#### `root_node` attribute
+#### `root_node` property
 
 The root node of the abstract syntax tree for this instance.
 
@@ -63,15 +63,15 @@ This class is constructed with respect to a root JSON value, a current JSON valu
 
 Tests if two instances are equal.
 
-#### `root_value` attribute
+#### `root_value` property
 
 The root JSON value.
 
-#### `current_value` attribute
+#### `current_value` property
 
 The current JSON value (i.e., the matching JSON value).
 
-#### `node` attribute
+#### `node` property
 
 The abstract syntax tree node.
 
