@@ -11,7 +11,7 @@ This repository contains the Pacifica implementation of [JSONPath](http://goessn
 
 ### `Path` class
 
-The `pacifica.jsonpath.Path.Path` class represents the abstract syntax tree for a Pacifica JSONPath.
+The `pacifica.jsonpath.Path.Path` class represents a Pacifica JSONPath.
 
 ```python
 >>> s = '{"hello":"Hello, world!"}'
@@ -52,6 +52,27 @@ Returns the string representation of this instance.
 #### `root_node` property
 
 The root node of the abstract syntax tree for this instance.
+
+### `Node` abstract class
+
+The `pacifica.jsonpath.Node.Node` class represents the abstract syntax tree for a Pacifica JSONPath.
+
+#### `__eq__(other)` instance method
+
+Tests if two instances are equal.
+
+#### `__jsonpath__()` instance method
+
+Yields the lexer tokens for the string representation of this instance.
+
+#### `match(root_value, current_value)` instance method
+
+Match the given root and current JSON data structures against this instance.
+For each match, yield an instance of the `pacifica.jsonpath.Node.MatchData` class.
+
+#### `tojsonpath()` instance method
+
+Returns the string representation of this instance.
 
 ### `MatchData` class
 
