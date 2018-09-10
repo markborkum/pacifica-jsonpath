@@ -24,6 +24,8 @@ The `pacifica.jsonpath.Path.Path` class represents a Pacifica JSONPath.
 <pacifica.jsonpath.Path.Path object>
 >>> list(map(lambda match: match.current_value, p.match(d)))
 ['Hello, world!']
+>>> list(map(lambda match: match.node.tojsonpath(), p.match(d)))
+['$["hello"]']
 ```
 
 This class is constructed with respect to the given instance of the `pacifica.jsonpath.Path.RootNode` class (viz., the `node` property).
