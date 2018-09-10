@@ -22,9 +22,9 @@ The `pacifica.jsonpath.Path.Path` class represents a Pacifica JSONPath.
 >>> from pacifica.jsonpath.Path import Path
 >>> p = Path.parse_str('$["hello"]')
 <pacifica.jsonpath.Path.Path object>
->>> list(map(lambda match: match.current_value, p.match(d)))
+>>> list(map(lambda match_data: match_data.current_value, p.match(d)))
 ['Hello, world!']
->>> list(map(lambda match: match.node.tojsonpath(), p.match(d)))
+>>> list(map(lambda match_data: match_data.node.tojsonpath(), p.match(d)))
 ['$["hello"]']
 ```
 
