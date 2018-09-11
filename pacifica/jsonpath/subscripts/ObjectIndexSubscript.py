@@ -7,6 +7,9 @@ from typing import Generator
 from pacifica.jsonpath.Node import MatchData
 from pacifica.jsonpath.Subscript import Subscript
 
+from pacifica.jsonpath.nodes.SubscriptNode import SubscriptNode
+from pacifica.jsonpath.nodes.TerminalNode import TerminalNode
+
 class ObjectIndexSubscript(Subscript):
     def __init__(self, index:str):
         super(ObjectIndexSubscript, self).__init__()
@@ -18,6 +21,6 @@ class ObjectIndexSubscript(Subscript):
 
     def match(self, root_value:object, current_value:object) -> Generator[MatchData, None, None]:
         if isinstance(current_value, dict) and (self.index in current_value):
-            return [MatchData(self, root_value, current_value[self.index])]
+            return [MatchData(SubscriptNode(TerminalNode(), [self]), root_value, current_value[self.index])]
         else:
             return []

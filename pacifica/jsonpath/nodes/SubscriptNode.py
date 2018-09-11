@@ -37,5 +37,10 @@ class SubscriptNode(Node):
                 for next_node_match_data in self.next_node.match(subscript_match_data.root_value, subscript_match_data.current_value):
                     if isinstance(subscript_match_data.node, TerminalNode):
                         yield next_node_match_data
+                    elif isinstance(subscript_match_data.node, SubscriptNode):
+                        if isinstance(subscript_match_data.node.next_node, TerminalNode):
+                            yield MatchData(SubscriptNode(next_node_match_data.node, subscript_match_data.node.subscripts), next_node_match_data.root_value, next_node_match_data.current_value)
+                        else:
+                            raise ValueError()
                     else:
-                        yield MatchData(SubscriptNode(next_node_match_data.node, [subscript_match_data.node]), next_node_match_data.root_value, next_node_match_data.current_value)
+                        raise ValueError()

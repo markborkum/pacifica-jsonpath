@@ -7,6 +7,9 @@ from typing import Generator
 from pacifica.jsonpath.Node import MatchData
 from pacifica.jsonpath.Subscript import Subscript
 
+from pacifica.jsonpath.nodes.SubscriptNode import SubscriptNode
+from pacifica.jsonpath.nodes.TerminalNode import TerminalNode
+
 class ArrayIndexSubscript(Subscript):
     def __init__(self, index:int):
         super(ArrayIndexSubscript, self).__init__()
@@ -22,11 +25,11 @@ class ArrayIndexSubscript(Subscript):
                 new_index = self.index + len(current_value)
 
                 if (new_index >= 0) and (new_index < len(current_value)):
-                    return [MatchData(self, root_value, current_value[new_index])]
+                    return [MatchData(SubscriptNode(TerminalNode(), [self]), root_value, current_value[new_index])]
                 else:
                     return []
             elif self.index < len(current_value):
-                return [MatchData(self, root_value, current_value[self.index])]
+                return [MatchData(SubscriptNode(TerminalNode(), [self]), root_value, current_value[self.index])]
             else:
                 return []
         else:
