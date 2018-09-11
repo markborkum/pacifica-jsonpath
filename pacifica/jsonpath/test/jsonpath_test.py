@@ -169,96 +169,101 @@ class TestCloudEvents(TestCase):
         with open(os.path.join('test_files', 'events.json'), 'r') as io:
             d = json.load(io)
 
-        # n = RootNode(
-        #         SubscriptNode(
-        #             SubscriptNode(
-        #                 SubscriptNode(
-        #                     SubscriptNode(
-        #                         SubscriptNode(
-        #                             TerminalNode(),
-        #                             [
-        #                                 ObjectIndexSubscript('key'),
-        #                             ]
-        #                         ),
-        #                         [
-        #                             FilterSubscript(
-        #                                 EqualBinaryOperatorExpression(
-        #                                     CurrentNode(
-        #                                         SubscriptNode(
-        #                                             TerminalNode(),
-        #                                             [
-        #                                                 ObjectIndexSubscript('destinationTable'),
-        #                                             ]
-        #                                         )
-        #                                     ),
-        #                                     'TransactionKeyValue'
-        #                                 )
-        #                             ),
-        #                         ]
-        #                     ),
-        #                     [
-        #                         WildcardSubscript(),
-        #                     ]
-        #                 ),
-        #                 [
-        #                     ObjectIndexSubscript('data'),
-        #                 ]
-        #             ),
-        #             [
-        #                 FilterSubscript(
-        #                     AndVariadicOperatorExpression(
-        #                         [
-        #                             SomeExpression(
-        #                                 CurrentNode(
-        #                                     SubscriptNode(
-        #                                         TerminalNode(),
-        #                                         [
-        #                                             ObjectIndexSubscript('eventID'),
-        #                                         ]
-        #                                     )
-        #                                 ),
-        #                             ),
-        #                             EqualBinaryOperatorExpression(
-        #                                 CurrentNode(
-        #                                     SubscriptNode(
-        #                                         TerminalNode(),
-        #                                         [
-        #                                             ObjectIndexSubscript('eventType'),
-        #                                         ]
-        #                                     )
-        #                                 ),
-        #                                 'org.pacifica.metadata.ingest'
-        #                             ),
-        #                             EqualBinaryOperatorExpression(
-        #                                 CurrentNode(
-        #                                     SubscriptNode(
-        #                                         TerminalNode(),
-        #                                         [
-        #                                             ObjectIndexSubscript('source'),
-        #                                         ]
-        #                                     )
-        #                                 ),
-        #                                 '/pacifica/metadata/ingest'
-        #                             ),
-        #                         ]
-        #                     )
-        #                 ),
-        #             ]
-        #         )
-        #     )
-
         s = '$[?(@["eventID"] and @["eventType"] = "org.pacifica.metadata.ingest" and @["source"] = "/pacifica/metadata/ingest")]["data"][*][?(@["destinationTable"] = "TransactionKeyValue")]["key"]'
 
         p = Path.parse_str(s)
 
+        n = RootNode(
+                SubscriptNode(
+                    SubscriptNode(
+                        SubscriptNode(
+                            SubscriptNode(
+                                SubscriptNode(
+                                    TerminalNode(),
+                                    [
+                                        ObjectIndexSubscript('key'),
+                                    ]
+                                ),
+                                [
+                                    FilterSubscript(
+                                        EqualBinaryOperatorExpression(
+                                            CurrentNode(
+                                                SubscriptNode(
+                                                    TerminalNode(),
+                                                    [
+                                                        ObjectIndexSubscript('destinationTable'),
+                                                    ]
+                                                )
+                                            ),
+                                            'TransactionKeyValue'
+                                        )
+                                    ),
+                                ]
+                            ),
+                            [
+                                WildcardSubscript(),
+                            ]
+                        ),
+                        [
+                            ObjectIndexSubscript('data'),
+                        ]
+                    ),
+                    [
+                        FilterSubscript(
+                            AndVariadicOperatorExpression(
+                                [
+                                    SomeExpression(
+                                        CurrentNode(
+                                            SubscriptNode(
+                                                TerminalNode(),
+                                                [
+                                                    ObjectIndexSubscript('eventID'),
+                                                ]
+                                            )
+                                        ),
+                                    ),
+                                    EqualBinaryOperatorExpression(
+                                        CurrentNode(
+                                            SubscriptNode(
+                                                TerminalNode(),
+                                                [
+                                                    ObjectIndexSubscript('eventType'),
+                                                ]
+                                            )
+                                        ),
+                                        'org.pacifica.metadata.ingest'
+                                    ),
+                                    EqualBinaryOperatorExpression(
+                                        CurrentNode(
+                                            SubscriptNode(
+                                                TerminalNode(),
+                                                [
+                                                    ObjectIndexSubscript('source'),
+                                                ]
+                                            )
+                                        ),
+                                        '/pacifica/metadata/ingest'
+                                    ),
+                                ]
+                            )
+                        ),
+                    ]
+                )
+            )
+
+        self.assertEqual(n, p.root_node)
+
         self.assertEqual(s, str(p))
 
         match_data_list = list(p.match(d))
-        self.assertEqual(3, len(match_data_list))
-        self.assertEqual(MatchData(Path.parse_str('$["data"][4]["key"]').root_node, d, 'Tag'), match_data_list[0])
-        self.assertEqual(MatchData(Path.parse_str('$["data"][5]["key"]').root_node, d, 'Taggy'), match_data_list[1])
-        self.assertEqual(MatchData(Path.parse_str('$["data"][6]["key"]').root_node, d, 'Taggier'), match_data_list[2])
+
+        self.assertEqual([
+            MatchData(Path.parse_str('$["data"][4]["key"]').root_node, d, 'Tag'),
+            MatchData(Path.parse_str('$["data"][5]["key"]').root_node, d, 'Taggy'),
+            MatchData(Path.parse_str('$["data"][6]["key"]').root_node, d, 'Taggier'),
+        ], match_data_list)
 
         for match_data in match_data_list:
             new_match_data_list = list(match_data.node.match(match_data.root_value, match_data.current_value))
+
             self.assertEqual([match_data], new_match_data_list)

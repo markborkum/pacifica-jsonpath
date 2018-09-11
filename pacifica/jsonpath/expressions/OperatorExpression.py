@@ -38,13 +38,17 @@ class BinaryOperatorExpression(OperatorExpression):
     def evaluate(self, root_value:object, current_value:object) -> bool:
         return any(map(lambda left_node_match_data: self.callback(left_node_match_data.current_value, self.right_value), self.left_node.match(root_value, current_value)))
 
+LAMBDA_EQUAL_ = lambda x, y: x == y
+
+LAMBDA_NOT_EQUAL_ = lambda x, y: x != y
+
 class EqualBinaryOperatorExpression(BinaryOperatorExpression):
     def __init__(self, *args, **kwargs):
-        super(EqualBinaryOperatorExpression, self).__init__('=', lambda x, y: x == y, *args, **kwargs)
+        super(EqualBinaryOperatorExpression, self).__init__('=', LAMBDA_EQUAL_, *args, **kwargs)
 
 class NotEqualBinaryOperatorExpression(BinaryOperatorExpression):
     def __init__(self, *args, **kwargs):
-        super(NotEqualBinaryOperatorExpression, self).__init__('!=', lambda x, y: x != y, *args, **kwargs)
+        super(NotEqualBinaryOperatorExpression, self).__init__('!=', LAMBDA_NOT_EQUAL_, *args, **kwargs)
 
 def _wrap_callback(callback):
     def wrapped_callback(x, y):
@@ -54,21 +58,29 @@ def _wrap_callback(callback):
             return False
     return wrapped_callback
 
+LAMBDA_LESS_THAN_ = _wrap_callback(lambda x, y: x < y)
+
+LAMBDA_LESS_THAN_OR_EQUAL_TO_ = _wrap_callback(lambda x, y: x <= y)
+
+LAMBDA_GREATER_THAN_ = _wrap_callback(lambda x, y: x > y)
+
+LAMBDA_GREATER_THAN_OR_EQUAL_TO_ = _wrap_callback(lambda x, y: x >= y)
+
 class LessThanBinaryOperatorExpression(BinaryOperatorExpression):
     def __init__(self, *args, **kwargs):
-        super(LessThanBinaryOperatorExpression, self).__init__('<', _wrap_callback(lambda x, y: x < y), *args, **kwargs)
+        super(LessThanBinaryOperatorExpression, self).__init__('<', LAMBDA_LESS_THAN_, *args, **kwargs)
 
 class LessThanOrEqualToBinaryOperatorExpression(BinaryOperatorExpression):
     def __init__(self, *args, **kwargs):
-        super(LessThanOrEqualToBinaryOperatorExpression, self).__init__('<=', _wrap_callback(lambda x, y: x <= y), *args, **kwargs)
+        super(LessThanOrEqualToBinaryOperatorExpression, self).__init__('<=', LAMBDA_LESS_THAN_OR_EQUAL_TO_, *args, **kwargs)
 
 class GreaterThanBinaryOperatorExpression(BinaryOperatorExpression):
     def __init__(self, *args, **kwargs):
-        super(GreaterThanBinaryOperatorExpression, self).__init__('>', _wrap_callback(lambda x, y: x > y), *args, **kwargs)
+        super(GreaterThanBinaryOperatorExpression, self).__init__('>', LAMBDA_GREATER_THAN_, *args, **kwargs)
 
 class GreaterThanOrEqualToBinaryOperatorExpression(BinaryOperatorExpression):
     def __init__(self, *args, **kwargs):
-        super(GreaterThanOrEqualToBinaryOperatorExpression, self).__init__('>=', _wrap_callback(lambda x, y: x >= y), *args, **kwargs)
+        super(GreaterThanOrEqualToBinaryOperatorExpression, self).__init__('>=', LAMBDA_GREATER_THAN_OR_EQUAL_TO_, *args, **kwargs)
 
 class UnaryOperatorExpression(OperatorExpression):
     def __init__(self, token:str, callback:Callable[[bool], bool], expression:Expression):
@@ -96,9 +108,11 @@ class UnaryOperatorExpression(OperatorExpression):
     def evaluate(self, root_value:object, current_value:object) -> bool:
         return self.callback(self.expression.evaluate(root_value, current_value))
 
+LAMBDA_NOT_ = lambda x: not x
+
 class NotUnaryOperatorExpression(UnaryOperatorExpression):
     def __init__(self, *args, **kwargs):
-        super(NotUnaryOperatorExpression, self).__init__('not', lambda x: not x, *args, **kwargs)
+        super(NotUnaryOperatorExpression, self).__init__('not', LAMBDA_NOT_, *args, **kwargs)
 
 class VariadicOperatorExpression(OperatorExpression):
     def __init__(self, token:str, callback:Callable[[List[bool]], bool], expressions:List[Expression]=[]):
