@@ -28,7 +28,7 @@ The `pacifica.jsonpath.Path.Path` class represents a Pacifica JSONPath.
 ['$["hello"]']
 ```
 
-This class is constructed with respect to the given instance of the `pacifica.jsonpath.Path.RootNode` class (viz., the `node` property).
+This class is constructed with respect to the given instance of the `pacifica.jsonpath.Path.RootNode` class (viz., the `root_node` property).
 
 #### `parse_str(strdata)` class method
 
