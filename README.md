@@ -34,7 +34,7 @@ This class is constructed with respect to the given instance of the `pacifica.js
 
 Parse the given string and return a new instance of this class.
 
-#### `parse_file(fileName, encoding)` class method
+#### `parse_file(fileName, encoding='ascii')` class method
 
 Parse the contents of the given file and return a new instance of this class.
 
