@@ -17,6 +17,7 @@ class SomeExpression(Expression):
             yield next_node_token
 
     def evaluate(self, root_value:object, current_value:object) -> bool:
-        next_node_match_data_list = list(self.next_node.match(root_value, current_value))
+        for next_node_match_data in self.next_node.match(root_value, current_value):
+            return True
 
-        return len(next_node_match_data_list) > 0
+        return False
