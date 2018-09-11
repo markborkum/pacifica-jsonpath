@@ -147,6 +147,36 @@ class TestNode(TestCase):
                     MatchData(SubscriptNode(SubscriptNode(TerminalNode(), [ArrayIndexSubscript(1)]), [ObjectIndexSubscript('languages')]), root_value, root_value['languages'][1]),
                 ],
             },
+            {
+                '__jsonpath__': '..[*]',
+                'node': RecursiveDescentNode(SubscriptNode(TerminalNode(), [WildcardSubscript()])),
+                'root_value': root_value,
+                'current_value': root_value,
+                'match_data_list': [
+                    MatchData(SubscriptNode(TerminalNode(), [ObjectIndexSubscript('hello')]), root_value, root_value['hello']),
+                    MatchData(SubscriptNode(TerminalNode(), [ObjectIndexSubscript('languages')]), root_value, root_value['languages']),
+                    MatchData(SubscriptNode(SubscriptNode(TerminalNode(), [ArrayIndexSubscript(0)]), [ObjectIndexSubscript('languages')]), root_value, root_value['languages'][0]),
+                    MatchData(SubscriptNode(SubscriptNode(TerminalNode(), [ArrayIndexSubscript(1)]), [ObjectIndexSubscript('languages')]), root_value, root_value['languages'][1]),
+                ],
+            },
+            {
+                '__jsonpath__': '..["hello"]',
+                'node': RecursiveDescentNode(SubscriptNode(TerminalNode(), [ObjectIndexSubscript('hello')])),
+                'root_value': root_value,
+                'current_value': root_value,
+                'match_data_list': [
+                    MatchData(SubscriptNode(TerminalNode(), [ObjectIndexSubscript('hello')]), root_value, root_value['hello']),
+                ],
+            },
+            {
+                '__jsonpath__': '..[0]',
+                'node': RecursiveDescentNode(SubscriptNode(TerminalNode(), [ArrayIndexSubscript(0)])),
+                'root_value': root_value,
+                'current_value': root_value,
+                'match_data_list': [
+                    MatchData(SubscriptNode(SubscriptNode(TerminalNode(), [ArrayIndexSubscript(0)]), [ObjectIndexSubscript('languages')]), root_value, root_value['languages'][0]),
+                ],
+            },
         ]
 
     def _assertNodeTestCase(self, **kwargs):
