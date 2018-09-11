@@ -5,9 +5,9 @@ jsonpath
    ;
 
 subscript
-   : subscriptables subscript?
-   | '..' ( subscriptables | subscriptableBareword ) subscript?
+   : '..' ( subscriptableBareword | subscriptables ) subscript?
    | '.' subscriptableBareword subscript?
+   | subscriptables subscript?
    ;
 
 subscriptables
