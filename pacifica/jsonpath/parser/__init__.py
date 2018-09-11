@@ -44,7 +44,7 @@ class _JSONPathListener(JSONPathListener):
             raise ValueError()
 
     def exitSubscript(self, ctx:JSONPathParser.SubscriptContext):
-        if ctx.getToken(JSONPathParser.T__3, 0) is not None:
+        if ctx.getToken(JSONPathParser.T__1, 0) is not None:
             if bool(ctx.subscript()):
                 next_node = self._stack.pop()
             else:
@@ -58,7 +58,7 @@ class _JSONPathListener(JSONPathListener):
                 raise ValueError()
 
             self._stack.append(RecursiveDescentNode(SubscriptNode(next_node, subscriptable_nodes)))
-        elif ctx.getToken(JSONPathParser.T__4, 0) is not None:
+        elif ctx.getToken(JSONPathParser.T__2, 0) is not None:
             if bool(ctx.subscript()):
                 next_node = self._stack.pop()
             else:

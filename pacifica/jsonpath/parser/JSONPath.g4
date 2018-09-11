@@ -5,13 +5,13 @@ jsonpath
    ;
 
 subscript
-   : '[' subscriptables ']' subscript?
-   | '..' ( subscriptableBareword | '[' subscriptables ']' ) subscript?
+   : subscriptables subscript?
+   | '..' ( subscriptables | subscriptableBareword ) subscript?
    | '.' subscriptableBareword subscript?
    ;
 
 subscriptables
-   : subscriptable ( ',' subscriptable )*
+   : '[' subscriptable ( ',' subscriptable )* ']'
    ;
 
 subscriptableBareword
