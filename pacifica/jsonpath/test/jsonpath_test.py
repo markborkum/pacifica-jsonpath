@@ -148,6 +148,19 @@ class TestNode(TestCase):
                 ],
             },
             {
+                '__jsonpath__': '..[?(@)]',
+                'node': RecursiveDescentNode(SubscriptNode(TerminalNode(), [FilterSubscript(SomeExpression(CurrentNode(TerminalNode())))])),
+                'root_value': root_value,
+                'current_value': root_value,
+                'match_data_list': [
+                    MatchData(TerminalNode(), root_value, root_value),
+                    MatchData(SubscriptNode(TerminalNode(), [ObjectIndexSubscript('hello')]), root_value, root_value['hello']),
+                    MatchData(SubscriptNode(TerminalNode(), [ObjectIndexSubscript('languages')]), root_value, root_value['languages']),
+                    MatchData(SubscriptNode(SubscriptNode(TerminalNode(), [ArrayIndexSubscript(0)]), [ObjectIndexSubscript('languages')]), root_value, root_value['languages'][0]),
+                    MatchData(SubscriptNode(SubscriptNode(TerminalNode(), [ArrayIndexSubscript(1)]), [ObjectIndexSubscript('languages')]), root_value, root_value['languages'][1]),
+                ],
+            },
+            {
                 '__jsonpath__': '..[*]',
                 'node': RecursiveDescentNode(SubscriptNode(TerminalNode(), [WildcardSubscript()])),
                 'root_value': root_value,
