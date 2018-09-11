@@ -153,12 +153,13 @@ class TestNode(TestCase):
         self.assertEqual(kwargs['__jsonpath__'], kwargs['node'].tojsonpath())
 
         match_data_list = list(kwargs['node'].match(kwargs['root_value'], kwargs['current_value']))
+
         self.assertEqual(kwargs['match_data_list'], match_data_list)
 
-        if kwargs['root_value'] == kwargs['current_value']:
-            for match_data in match_data_list:
-                new_match_data_list = list(match_data.node.match(kwargs['root_value'], kwargs['current_value']))
-                self.assertEqual([match_data], new_match_data_list)
+        for match_data in match_data_list:
+            new_match_data_list = list(match_data.node.match(kwargs['root_value'], kwargs['current_value']))
+
+            self.assertEqual([match_data], new_match_data_list)
 
     def test_state(self):
         for kwargs in self._state:
