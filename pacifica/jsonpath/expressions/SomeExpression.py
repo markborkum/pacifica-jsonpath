@@ -13,8 +13,7 @@ class SomeExpression(Expression):
         self.next_node = next_node
 
     def __jsonpath__(self) -> Generator[str, None, None]:
-        for next_node_token in self.next_node.__jsonpath__():
-            yield next_node_token
+        return self.next_node.__jsonpath__()
 
     def evaluate(self, root_value:object, current_value:object) -> bool:
         for next_node_match_data in self.next_node.match(root_value, current_value):
