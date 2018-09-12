@@ -308,13 +308,17 @@ class _JSONPathListener(JSONPathListener):
             raise ValueError()
 
 def _parse_input_stream(input_stream:antlr4.InputStream) -> RootNode:
+    errorListener = _ConsoleErrorListener()
+
     lexer = JSONPathLexer(input_stream)
+
+    lexer.addErrorListener(errorListener)
 
     token_stream = antlr4.CommonTokenStream(lexer)
 
     parser = JSONPathParser(token_stream)
 
-    parser.addErrorListener(_ConsoleErrorListener())
+    parser.addErrorListener(errorListener)
 
     tree = parser.jsonpath()
 
