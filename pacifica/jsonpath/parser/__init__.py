@@ -322,10 +322,9 @@ def _parse_input_stream(input_stream:antlr4.InputStream) -> RootNode:
 
     tree = parser.jsonpath()
 
-    walker = antlr4.ParseTreeWalker()
-
     listener = _JSONPathListener(_stack=[])
 
+    walker = antlr4.ParseTreeWalker()
     walker.walk(listener, tree)
 
     return listener._stack.pop()
