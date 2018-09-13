@@ -21,7 +21,7 @@ subscriptableBareword
 
 subscriptable
    : STRING
-   | NUMBER ( ':' NUMBER? ( ':' NUMBER )? )?
+   | NUMBER{self.tryCast(int)}? ( ':' ( NUMBER{self.tryCast(int)}? )? ( ':' NUMBER{self.tryCast(int)}? )? )?
    | '*'
    | '?' '(' expression ')'
    ;

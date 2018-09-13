@@ -110,44 +110,17 @@ class _JSONPathListener(JSONPathListener):
             self._stack.append(ObjectIndexSubscript(text))
         elif bool(ctx.NUMBER()):
             if ctx.getToken(JSONPathParser.T__7, 0) is not None:
-                if bool(ctx.NUMBER(0)):
-                    text = ctx.NUMBER(0).getText()
+                start = int(ctx.NUMBER(0).getText()) if bool(ctx.NUMBER(0)) else None
 
-                    if ('.' in text) or ('E' in text) or ('e' in text):
-                        start = float(text)
-                    else:
-                        start = int(text)
-                else:
-                    start = None
+                end = int(ctx.NUMBER(1).getText()) if bool(ctx.NUMBER(1)) else None
 
-                if bool(ctx.NUMBER(1)):
-                    text = ctx.NUMBER(1).getText()
-
-                    if ('.' in text) or ('E' in text) or ('e' in text):
-                        end = float(text)
-                    else:
-                        end = int(text)
-                else:
-                    end = None
-
-                if bool(ctx.NUMBER(2)):
-                    text = ctx.NUMBER(2).getText()
-
-                    if ('.' in text) or ('E' in text) or ('e' in text):
-                        step = float(text)
-                    else:
-                        step = int(text)
-                else:
-                    step = None
+                step = int(ctx.NUMBER(2).getText()) if bool(ctx.NUMBER(2)) else None
 
                 self._stack.append(ArraySliceSubscript(start, end, step))
             else:
-                text = ctx.NUMBER(0).getText()
+                index = int(ctx.NUMBER(0).getText())
 
-                if ('.' in text) or ('E' in text) or ('e' in text):
-                    self._stack.append(ArrayIndexSubscript(float(text)))
-                else:
-                    self._stack.append(ArrayIndexSubscript(int(text)))
+                self._stack.append(ArrayIndexSubscript(index))
         elif ctx.getToken(JSONPathParser.T__6, 0) is not None:
             self._stack.append(WildcardSubscript())
         elif ctx.getToken(JSONPathParser.T__8, 0) is not None:
@@ -307,6 +280,15 @@ class _JSONPathListener(JSONPathListener):
         else:
             raise ValueError()
 
+class _JSONPathParser(JSONPathParser):
+    def tryCast(self, cls):
+        try:
+            cls(self._input.LT(-1).text)
+
+            return True
+        except ValueError:
+            return False
+
 def _parse_input_stream(input_stream:antlr4.InputStream) -> RootNode:
     error_listener = _ConsoleErrorListener()
 
@@ -316,7 +298,7 @@ def _parse_input_stream(input_stream:antlr4.InputStream) -> RootNode:
 
     token_stream = antlr4.CommonTokenStream(lexer)
 
-    parser = JSONPathParser(token_stream)
+    parser = _JSONPathParser(token_stream)
 
     parser.addErrorListener(error_listener)
 
