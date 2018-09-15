@@ -33,7 +33,7 @@ class _JSONPathListener(JSONPathListener):
         self._stack = _stack
 
     def exitJsonpath(self, ctx:JSONPathParser.JsonpathContext):
-        if ctx.getToken(JSONPathParser.T__0, 0) is not None:
+        if ctx.getToken(JSONPathParser.ROOT_VALUE, 0) is not None:
             if bool(ctx.subscript()):
                 next_node = self._stack.pop()
             else:
@@ -44,7 +44,7 @@ class _JSONPathListener(JSONPathListener):
             raise ValueError()
 
     def exitSubscript(self, ctx:JSONPathParser.SubscriptContext):
-        if ctx.getToken(JSONPathParser.T__1, 0) is not None:
+        if ctx.getToken(JSONPathParser.RECURSIVE_DESCENT, 0) is not None:
             if bool(ctx.subscript()):
                 next_node = self._stack.pop()
             else:
@@ -58,7 +58,7 @@ class _JSONPathListener(JSONPathListener):
                 raise ValueError()
 
             self._stack.append(RecursiveDescentNode(SubscriptNode(next_node, subscriptable_nodes)))
-        elif ctx.getToken(JSONPathParser.T__2, 0) is not None:
+        elif ctx.getToken(JSONPathParser.SUBSCRIPT, 0) is not None:
             if bool(ctx.subscript()):
                 next_node = self._stack.pop()
             else:
@@ -98,7 +98,7 @@ class _JSONPathListener(JSONPathListener):
             text = ctx.ID().getText()
 
             self._stack.append(ObjectIndexSubscript(text))
-        elif ctx.getToken(JSONPathParser.T__6, 0) is not None:
+        elif ctx.getToken(JSONPathParser.WILDCARD_SUBSCRIPT, 0) is not None:
             self._stack.append(WildcardSubscript())
         else:
             raise ValueError()
@@ -109,7 +109,7 @@ class _JSONPathListener(JSONPathListener):
 
             self._stack.append(ObjectIndexSubscript(text))
         elif bool(ctx.NUMBER()):
-            if ctx.getToken(JSONPathParser.T__7, 0) is not None:
+            if ctx.getToken(JSONPathParser.COLON, 0) is not None:
                 start = int(ctx.NUMBER(0).getText()) if bool(ctx.NUMBER(0)) else None
 
                 end = int(ctx.NUMBER(1).getText()) if bool(ctx.NUMBER(1)) else None
@@ -121,9 +121,9 @@ class _JSONPathListener(JSONPathListener):
                 index = int(ctx.NUMBER(0).getText())
 
                 self._stack.append(ArrayIndexSubscript(index))
-        elif ctx.getToken(JSONPathParser.T__6, 0) is not None:
+        elif ctx.getToken(JSONPathParser.WILDCARD_SUBSCRIPT, 0) is not None:
             self._stack.append(WildcardSubscript())
-        elif ctx.getToken(JSONPathParser.T__8, 0) is not None:
+        elif ctx.getToken(JSONPathParser.QUESTION, 0) is not None:
             expression = self._stack.pop()
 
             self._stack.append(FilterSubscript(expression))
@@ -181,14 +181,14 @@ class _JSONPathListener(JSONPathListener):
             self._stack.append(OrVariadicOperatorExpression(expressions))
 
     def exitNotExpression(self, ctx:JSONPathParser.NotExpressionContext):
-        if ctx.getToken(JSONPathParser.T__13, 0) is not None:
+        if ctx.getToken(JSONPathParser.NOT, 0) is not None:
             expression = self._stack.pop()
 
             if isinstance(expression, NotUnaryOperatorExpression):
                 self._stack.append(expression.expression)
             else:
                 self._stack.append(NotUnaryOperatorExpression(expression))
-        elif (ctx.getToken(JSONPathParser.T__0, 0) is not None) or (ctx.getToken(JSONPathParser.T__14, 0) is not None):
+        elif (ctx.getToken(JSONPathParser.ROOT_VALUE, 0) is not None) or (ctx.getToken(JSONPathParser.CURRENT_VALUE, 0) is not None):
             if bool(ctx.value()):
                 right_value = self._stack.pop()
 
@@ -197,24 +197,24 @@ class _JSONPathListener(JSONPathListener):
                 else:
                     next_node = TerminalNode()
 
-                if ctx.getToken(JSONPathParser.T__0, 0) is not None:
+                if ctx.getToken(JSONPathParser.ROOT_VALUE, 0) is not None:
                     left_node = RootNode(next_node)
-                elif ctx.getToken(JSONPathParser.T__14, 0) is not None:
+                elif ctx.getToken(JSONPathParser.CURRENT_VALUE, 0) is not None:
                     left_node = CurrentNode(next_node)
                 else:
                     raise ValueError()
 
-                if ctx.getToken(JSONPathParser.T__15, 0) is not None:
+                if ctx.getToken(JSONPathParser.EQ, 0) is not None:
                     self._stack.append(EqualBinaryOperatorExpression(left_node, right_value))
-                elif ctx.getToken(JSONPathParser.T__16, 0) is not None:
+                elif ctx.getToken(JSONPathParser.NE, 0) is not None:
                     self._stack.append(NotEqualBinaryOperatorExpression(left_node, right_value))
-                elif ctx.getToken(JSONPathParser.T__17, 0) is not None:
+                elif ctx.getToken(JSONPathParser.LT, 0) is not None:
                     self._stack.append(LessThanBinaryOperatorExpression(left_node, right_value))
-                elif ctx.getToken(JSONPathParser.T__18, 0) is not None:
+                elif ctx.getToken(JSONPathParser.LE, 0) is not None:
                     self._stack.append(LessThanOrEqualToBinaryOperatorExpression(left_node, right_value))
-                elif ctx.getToken(JSONPathParser.T__19, 0) is not None:
+                elif ctx.getToken(JSONPathParser.GT, 0) is not None:
                     self._stack.append(GreaterThanBinaryOperatorExpression(left_node, right_value))
-                elif ctx.getToken(JSONPathParser.T__20, 0) is not None:
+                elif ctx.getToken(JSONPathParser.GE, 0) is not None:
                     self._stack.append(GreaterThanOrEqualToBinaryOperatorExpression(left_node, right_value))
                 else:
                     raise ValueError()
@@ -271,11 +271,11 @@ class _JSONPathListener(JSONPathListener):
             pass
         elif bool(ctx.array()):
             pass
-        elif ctx.getToken(JSONPathParser.T__23, 0) is not None:
+        elif ctx.getToken(JSONPathParser.TRUE, 0) is not None:
             self._stack.append(True)
-        elif ctx.getToken(JSONPathParser.T__24, 0) is not None:
+        elif ctx.getToken(JSONPathParser.FALSE, 0) is not None:
             self._stack.append(False)
-        elif ctx.getToken(JSONPathParser.T__25, 0) is not None:
+        elif ctx.getToken(JSONPathParser.NULL, 0) is not None:
             self._stack.append(None)
         else:
             raise ValueError()

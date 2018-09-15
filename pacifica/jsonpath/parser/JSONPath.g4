@@ -1,29 +1,59 @@
 grammar JSONPath;
 
+CURRENT_VALUE : '@' ;
+RECURSIVE_DESCENT : '..' ;
+ROOT_VALUE : '$' ;
+SUBSCRIPT : '.' ;
+WILDCARD_SUBSCRIPT : '*' ;
+
+AND : 'and' ;
+EQ : '=' ;
+GE : '>=' ;
+GT : '>' ;
+LE : '<=' ;
+LT : '<' ;
+NE : '!=' ;
+NOT : 'not' ;
+OR : 'or' ;
+
+TRUE : 'true' ;
+FALSE : 'false' ;
+NULL : 'null' ;
+
+BRACE_LEFT : '{' ;
+BRACE_RIGHT : '}' ;
+BRACKET_LEFT : '[' ;
+BRACKET_RIGHT : ']' ;
+COLON : ':' ;
+COMMA : ',' ;
+PAREN_LEFT : '(' ;
+PAREN_RIGHT : ')' ;
+QUESTION : '?' ;
+
 jsonpath
-   : '$' subscript? EOF
+   : ROOT_VALUE subscript? EOF
    ;
 
 subscript
-   : '..' ( subscriptableBareword | subscriptables ) subscript?
-   | '.' subscriptableBareword subscript?
+   : RECURSIVE_DESCENT ( subscriptableBareword | subscriptables ) subscript?
+   | SUBSCRIPT subscriptableBareword subscript?
    | subscriptables subscript?
    ;
 
 subscriptables
-   : '[' subscriptable ( ',' subscriptable )* ']'
+   : BRACKET_LEFT subscriptable ( COMMA subscriptable )* BRACKET_RIGHT
    ;
 
 subscriptableBareword
    : ID
-   | '*'
+   | WILDCARD_SUBSCRIPT
    ;
 
 subscriptable
    : STRING
-   | NUMBER{self.tryCast(int)}? ( ':' ( NUMBER{self.tryCast(int)}? )? ( ':' NUMBER{self.tryCast(int)}? )? )?
-   | '*'
-   | '?' '(' expression ')'
+   | NUMBER{self.tryCast(int)}? ( COLON ( NUMBER{self.tryCast(int)}? )? ( COLON NUMBER{self.tryCast(int)}? )? )?
+   | WILDCARD_SUBSCRIPT
+   | QUESTION PAREN_LEFT expression PAREN_RIGHT
    ;
 
 expression
@@ -31,17 +61,17 @@ expression
    ;
 
 andExpression
-   : orExpression ( 'and' andExpression )?
+   : orExpression ( AND andExpression )?
    ;
 
 orExpression
-   : notExpression ( 'or' orExpression )?
+   : notExpression ( OR orExpression )?
    ;
 
 notExpression
-   : 'not' notExpression
-   | '(' expression ')'
-   | ( '$' | '@' ) subscript? ( ( '=' | '!=' | '<' | '<=' | '>' | '>=' ) value )?
+   : NOT notExpression
+   | PAREN_LEFT expression PAREN_RIGHT
+   | ( ROOT_VALUE | CURRENT_VALUE ) subscript? ( ( EQ | NE | LT | LE | GT | GE ) value )?
    ;
 
 
@@ -57,17 +87,17 @@ json
    ;
 
 obj
-   : '{' pair (',' pair)* '}'
-   | '{' '}'
+   : BRACE_LEFT pair ( COMMA pair )* BRACE_RIGHT
+   | BRACE_LEFT BRACE_RIGHT
    ;
 
 pair
-   : STRING ':' value
+   : STRING COLON value
    ;
 
 array
-   : '[' value (',' value)* ']'
-   | '[' ']'
+   : BRACKET_LEFT value ( COMMA value )* BRACKET_RIGHT
+   | BRACKET_LEFT BRACKET_RIGHT
    ;
 
 value
@@ -75,9 +105,9 @@ value
    | NUMBER
    | obj
    | array
-   | 'true'
-   | 'false'
-   | 'null'
+   | TRUE
+   | FALSE
+   | NULL
    ;
 
 
