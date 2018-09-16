@@ -104,7 +104,7 @@ The abstract syntax tree node.
 | - | - | - |
 | `/` | `$` | the root JSON value |
 | `.` | `@` | the current JSON value |
-| `/` | `.` or `[]` | child operator |
+| `/` | `[]` | child operator |
 | `//` | `..` | recursive descent (depth-first search) |
 | `*` | `*` | wildcard (all elements of a JSON array; all values of a JSON object; otherwise none) |
 | `[]` | `[]` | subscript operator |
