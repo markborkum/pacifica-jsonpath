@@ -3,7 +3,6 @@ grammar JSONPath;
 CURRENT_VALUE : '@' ;
 RECURSIVE_DESCENT : '..' ;
 ROOT_VALUE : '$' ;
-SUBSCRIPT : '.' ;
 WILDCARD_SUBSCRIPT : '*' ;
 
 AND : 'and' ;
@@ -35,18 +34,12 @@ jsonpath
    ;
 
 subscript
-   : RECURSIVE_DESCENT ( subscriptableBareword | subscriptables ) subscript?
-   | SUBSCRIPT subscriptableBareword subscript?
+   : RECURSIVE_DESCENT subscriptables subscript?
    | subscriptables subscript?
    ;
 
 subscriptables
    : BRACKET_LEFT subscriptable ( COMMA subscriptable )* BRACKET_RIGHT
-   ;
-
-subscriptableBareword
-   : ID
-   | WILDCARD_SUBSCRIPT
    ;
 
 subscriptable

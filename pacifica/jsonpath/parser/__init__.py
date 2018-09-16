@@ -50,26 +50,9 @@ class _JSONPathListener(JSONPathListener):
             else:
                 next_node = TerminalNode()
 
-            if bool(ctx.subscriptableBareword()):
-                subscriptable_nodes = [self._stack.pop()]
-            elif bool(ctx.subscriptables()):
-                subscriptable_nodes = self._stack.pop()
-            else:
-                raise ValueError()
+            subscriptable_nodes = self._stack.pop()
 
             self._stack.append(RecursiveDescentNode(SubscriptNode(next_node, subscriptable_nodes)))
-        elif ctx.getToken(JSONPathParser.SUBSCRIPT, 0) is not None:
-            if bool(ctx.subscript()):
-                next_node = self._stack.pop()
-            else:
-                next_node = TerminalNode()
-
-            if bool(ctx.subscriptableBareword()):
-                subscriptable_nodes = [self._stack.pop()]
-            else:
-                raise ValueError()
-
-            self._stack.append(SubscriptNode(next_node, subscriptable_nodes))
         else:
             if bool(ctx.subscript()):
                 next_node = self._stack.pop()
@@ -92,16 +75,6 @@ class _JSONPathListener(JSONPathListener):
             subscriptable_nodes.insert(0, subscriptable_node)
 
         self._stack.append(subscriptable_nodes)
-
-    def exitSubscriptableBareword(self, ctx:JSONPathParser.SubscriptableBarewordContext):
-        if bool(ctx.ID()):
-            text = ctx.ID().getText()
-
-            self._stack.append(ObjectIndexSubscript(text))
-        elif ctx.getToken(JSONPathParser.WILDCARD_SUBSCRIPT, 0) is not None:
-            self._stack.append(WildcardSubscript())
-        else:
-            raise ValueError()
 
     def exitSubscriptable(self, ctx:JSONPathParser.SubscriptableContext):
         if bool(ctx.STRING()):
