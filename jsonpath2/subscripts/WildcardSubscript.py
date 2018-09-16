@@ -4,11 +4,11 @@
 import itertools
 from typing import Generator
 
-from pacifica.jsonpath.Node import MatchData
-from pacifica.jsonpath.Subscript import Subscript
+from jsonpath2.Node import MatchData
+from jsonpath2.Subscript import Subscript
 
-from pacifica.jsonpath.subscripts.ArrayIndexSubscript import ArrayIndexSubscript
-from pacifica.jsonpath.subscripts.ObjectIndexSubscript import ObjectIndexSubscript
+from jsonpath2.subscripts.ArrayIndexSubscript import ArrayIndexSubscript
+from jsonpath2.subscripts.ObjectIndexSubscript import ObjectIndexSubscript
 
 class WildcardSubscript(Subscript):
     def __init__(self):

@@ -4,7 +4,7 @@
 from abc import abstractmethod
 from typing import Generator
 
-from pacifica.jsonpath.ToJSONPath import ToJSONPath
+from jsonpath2.ToJSONPath import ToJSONPath
 
 class MatchData(object):
     def __init__(self, node, root_value, current_value):

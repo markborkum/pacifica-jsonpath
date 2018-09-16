@@ -3,7 +3,7 @@
 
 from abc import abstractmethod
 
-from pacifica.jsonpath.ToJSONPath import ToJSONPath
+from jsonpath2.ToJSONPath import ToJSONPath
 
 class Expression(ToJSONPath):
     def __init__(self):

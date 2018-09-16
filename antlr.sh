@@ -12,4 +12,4 @@ alias grun='java org.antlr.v4.gui.TestRig'
 
 # Adapted from https://github.com/antlr/antlr4/blob/master/doc/python-target.md
 
-antlr4 -Dlanguage=Python3 -o . -lib . pacifica/jsonpath/parser/JSONPath.g4
+antlr4 -Dlanguage=Python3 -o . -lib . jsonpath2/parser/JSONPath.g4

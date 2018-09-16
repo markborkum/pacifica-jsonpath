@@ -4,11 +4,11 @@
 import json
 from typing import Generator
 
-from pacifica.jsonpath.Node import MatchData
-from pacifica.jsonpath.Subscript import Subscript
+from jsonpath2.Node import MatchData
+from jsonpath2.Subscript import Subscript
 
-from pacifica.jsonpath.nodes.SubscriptNode import SubscriptNode
-from pacifica.jsonpath.nodes.TerminalNode import TerminalNode
+from jsonpath2.nodes.SubscriptNode import SubscriptNode
+from jsonpath2.nodes.TerminalNode import TerminalNode
 
 class ArrayIndexSubscript(Subscript):
     def __init__(self, index:int):

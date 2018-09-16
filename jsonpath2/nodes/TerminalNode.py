@@ -3,7 +3,7 @@
 
 from typing import Generator
 
-from pacifica.jsonpath.Node import MatchData, Node
+from jsonpath2.Node import MatchData, Node
 
 class TerminalNode(Node):
     def __init__(self):

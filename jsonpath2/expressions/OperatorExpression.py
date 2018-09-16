@@ -5,10 +5,10 @@ from abc import abstractmethod
 import json
 from typing import Callable, Generator, List
 
-from pacifica.jsonpath.Expression import Expression
-from pacifica.jsonpath.Node import Node
+from jsonpath2.Expression import Expression
+from jsonpath2.Node import Node
 
-from pacifica.jsonpath.expressions.SomeExpression import SomeExpression
+from jsonpath2.expressions.SomeExpression import SomeExpression
 
 class OperatorExpression(Expression):
     pass

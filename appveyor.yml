@@ -20,5 +20,5 @@ test_script:
   - ps: >
       mkdir C:\tmp; C:\pacifica\Scripts\activate.ps1;
       pre-commit run -a;
-      coverage run --include='pacifica/*' -m pytest -v;
+      coverage run --include='jsonpath2/*' -m pytest -v;
       coverage report -m --fail-under=100;

@@ -3,11 +3,11 @@
 
 from typing import Generator
 
-from pacifica.jsonpath.Expression import Expression
-from pacifica.jsonpath.Node import MatchData
-from pacifica.jsonpath.Subscript import Subscript
+from jsonpath2.Expression import Expression
+from jsonpath2.Node import MatchData
+from jsonpath2.Subscript import Subscript
 
-from pacifica.jsonpath.nodes.TerminalNode import TerminalNode
+from jsonpath2.nodes.TerminalNode import TerminalNode
 
 class FilterSubscript(Subscript):
     def __init__(self, expression:Expression):

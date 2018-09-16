@@ -3,24 +3,24 @@
 
 import antlr4
 
-from pacifica.jsonpath.expressions.OperatorExpression import AndVariadicOperatorExpression, EqualBinaryOperatorExpression, GreaterThanBinaryOperatorExpression, GreaterThanOrEqualToBinaryOperatorExpression, LessThanBinaryOperatorExpression, LessThanOrEqualToBinaryOperatorExpression, NotEqualBinaryOperatorExpression, NotUnaryOperatorExpression, OrVariadicOperatorExpression
-from pacifica.jsonpath.expressions.SomeExpression import SomeExpression
+from jsonpath2.expressions.OperatorExpression import AndVariadicOperatorExpression, EqualBinaryOperatorExpression, GreaterThanBinaryOperatorExpression, GreaterThanOrEqualToBinaryOperatorExpression, LessThanBinaryOperatorExpression, LessThanOrEqualToBinaryOperatorExpression, NotEqualBinaryOperatorExpression, NotUnaryOperatorExpression, OrVariadicOperatorExpression
+from jsonpath2.expressions.SomeExpression import SomeExpression
 
-from pacifica.jsonpath.nodes.CurrentNode import CurrentNode
-from pacifica.jsonpath.nodes.RecursiveDescentNode import RecursiveDescentNode
-from pacifica.jsonpath.nodes.RootNode import RootNode
-from pacifica.jsonpath.nodes.SubscriptNode import SubscriptNode
-from pacifica.jsonpath.nodes.TerminalNode import TerminalNode
+from jsonpath2.nodes.CurrentNode import CurrentNode
+from jsonpath2.nodes.RecursiveDescentNode import RecursiveDescentNode
+from jsonpath2.nodes.RootNode import RootNode
+from jsonpath2.nodes.SubscriptNode import SubscriptNode
+from jsonpath2.nodes.TerminalNode import TerminalNode
 
-from pacifica.jsonpath.parser.JSONPathLexer import JSONPathLexer
-from pacifica.jsonpath.parser.JSONPathListener import JSONPathListener
-from pacifica.jsonpath.parser.JSONPathParser import JSONPathParser
+from jsonpath2.parser.JSONPathLexer import JSONPathLexer
+from jsonpath2.parser.JSONPathListener import JSONPathListener
+from jsonpath2.parser.JSONPathParser import JSONPathParser
 
-from pacifica.jsonpath.subscripts.ArrayIndexSubscript import ArrayIndexSubscript
-from pacifica.jsonpath.subscripts.ArraySliceSubscript import ArraySliceSubscript
-from pacifica.jsonpath.subscripts.FilterSubscript import FilterSubscript
-from pacifica.jsonpath.subscripts.ObjectIndexSubscript import ObjectIndexSubscript
-from pacifica.jsonpath.subscripts.WildcardSubscript import WildcardSubscript
+from jsonpath2.subscripts.ArrayIndexSubscript import ArrayIndexSubscript
+from jsonpath2.subscripts.ArraySliceSubscript import ArraySliceSubscript
+from jsonpath2.subscripts.FilterSubscript import FilterSubscript
+from jsonpath2.subscripts.ObjectIndexSubscript import ObjectIndexSubscript
+from jsonpath2.subscripts.WildcardSubscript import WildcardSubscript
 
 class _ConsoleErrorListener(antlr4.error.ErrorListener.ConsoleErrorListener):
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):

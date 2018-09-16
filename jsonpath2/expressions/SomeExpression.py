@@ -3,8 +3,8 @@
 
 from typing import Generator
 
-from pacifica.jsonpath.Expression import Expression
-from pacifica.jsonpath.Node import Node
+from jsonpath2.Expression import Expression
+from jsonpath2.Node import Node
 
 class SomeExpression(Expression):
     def __init__(self, next_node:Node):

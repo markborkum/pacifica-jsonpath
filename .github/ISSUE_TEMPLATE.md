@@ -1,8 +1,5 @@
-### Pacifica REPLACE_ME version
-[Version of the pacifica software where you are encountering the issue]
-
-### Pacifica Core Software versions
-[Versions of the pacifica core software components related to this issue]
+### python-jsonpath2 version
+[Version of python-jsonpath2 where you are encountering the issue]
 
 ### Platform Details
 [Operating system distribution and release version. Cloud provider if running in the cloud]

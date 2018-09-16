@@ -3,9 +3,9 @@
 
 from typing import Generator
 
-from pacifica.jsonpath.Node import MatchData
-from pacifica.jsonpath.nodes.RootNode import RootNode
-import pacifica.jsonpath.parser as _parser
+from jsonpath2.Node import MatchData
+from jsonpath2.nodes.RootNode import RootNode
+import jsonpath2.parser as _parser
 
 class Path(object):
     def __init__(self, root_node:RootNode):

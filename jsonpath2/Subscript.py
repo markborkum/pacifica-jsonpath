@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from pacifica.jsonpath.Node import MatchData, Node
+from jsonpath2.Node import MatchData, Node
 
 class Subscript(Node):
     pass

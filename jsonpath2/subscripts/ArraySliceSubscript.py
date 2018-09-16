@@ -5,8 +5,8 @@ import itertools
 import json
 from typing import Generator
 
-from pacifica.jsonpath.Node import MatchData
-from pacifica.jsonpath.Subscript import Subscript
+from jsonpath2.Node import MatchData
+from jsonpath2.Subscript import Subscript
 
 class ArraySliceSubscript(Subscript):
     def __init__(self, start:int=None, end:int=None, step:int=None):

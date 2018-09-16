@@ -4,11 +4,11 @@
 import itertools
 from typing import Generator
 
-from pacifica.jsonpath.Node import MatchData, Node
+from jsonpath2.Node import MatchData, Node
 
-from pacifica.jsonpath.nodes.SubscriptNode import SubscriptNode
+from jsonpath2.nodes.SubscriptNode import SubscriptNode
 
-from pacifica.jsonpath.subscripts.WildcardSubscript import WildcardSubscript
+from jsonpath2.subscripts.WildcardSubscript import WildcardSubscript
 
 class RecursiveDescentNode(Node):
     def __init__(self, next_node:Node):

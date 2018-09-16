@@ -3,10 +3,10 @@
 
 from typing import Generator, List
 
-from pacifica.jsonpath.Node import MatchData, Node
-from pacifica.jsonpath.Subscript import Subscript
+from jsonpath2.Node import MatchData, Node
+from jsonpath2.Subscript import Subscript
 
-from pacifica.jsonpath.nodes.TerminalNode import TerminalNode
+from jsonpath2.nodes.TerminalNode import TerminalNode
 
 class SubscriptNode(Node):
     def __init__(self, next_node:Node, subscripts:List[Subscript]=[]):

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Setup and install the pacifica service."""
+"""Setup and install python-jsonpath2."""
 try:  # pip version 9
     from pip.req import parse_requirements
 except ImportError:
@@ -11,13 +11,15 @@ from setuptools import setup, find_packages
 INSTALL_REQS = parse_requirements('requirements.txt', session='hack')
 
 setup(
-    name='pacifica-jsonpath',
+    name='python-jsonpath2',
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
-    description='Pacifica JSONPath',
+    license='LGPLv3',
+    url='https://pypi.python.org/pypi/jsonpath2/',
+    description='JSONPath implementation for Python',
     author='Mark Borkum',
     author_email='mark.borkum@pnnl.gov',
     packages=find_packages(),
-    namespace_packages=['pacifica'],
+    namespace_packages=['jsonpath2'],
     install_requires=[str(ir.req) for ir in INSTALL_REQS]
 )
