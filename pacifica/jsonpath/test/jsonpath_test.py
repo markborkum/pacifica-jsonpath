@@ -126,7 +126,7 @@ class TestNode(TestCase):
                 ],
             },
             {
-                '__jsonpath__': '..',
+                '__jsonpath__': '[**]',
                 'node': RecursiveDescentNode(TerminalNode()),
                 'root_value': root_value,
                 'current_value': current_value,
@@ -135,7 +135,7 @@ class TestNode(TestCase):
                 ],
             },
             {
-                '__jsonpath__': '..',
+                '__jsonpath__': '[**]',
                 'node': RecursiveDescentNode(TerminalNode()),
                 'root_value': root_value,
                 'current_value': root_value,
@@ -148,7 +148,7 @@ class TestNode(TestCase):
                 ],
             },
             {
-                '__jsonpath__': '..[?(@)]',
+                '__jsonpath__': '[**][?(@)]',
                 'node': RecursiveDescentNode(SubscriptNode(TerminalNode(), [FilterSubscript(SomeExpression(CurrentNode(TerminalNode())))])),
                 'root_value': root_value,
                 'current_value': root_value,
@@ -161,7 +161,7 @@ class TestNode(TestCase):
                 ],
             },
             {
-                '__jsonpath__': '..[*]',
+                '__jsonpath__': '[**][*]',
                 'node': RecursiveDescentNode(SubscriptNode(TerminalNode(), [WildcardSubscript()])),
                 'root_value': root_value,
                 'current_value': root_value,
@@ -173,7 +173,7 @@ class TestNode(TestCase):
                 ],
             },
             {
-                '__jsonpath__': '..["hello"]',
+                '__jsonpath__': '[**]["hello"]',
                 'node': RecursiveDescentNode(SubscriptNode(TerminalNode(), [ObjectIndexSubscript('hello')])),
                 'root_value': root_value,
                 'current_value': root_value,
@@ -182,7 +182,7 @@ class TestNode(TestCase):
                 ],
             },
             {
-                '__jsonpath__': '..[0]',
+                '__jsonpath__': '[**][0]',
                 'node': RecursiveDescentNode(SubscriptNode(TerminalNode(), [ArrayIndexSubscript(0)])),
                 'root_value': root_value,
                 'current_value': root_value,

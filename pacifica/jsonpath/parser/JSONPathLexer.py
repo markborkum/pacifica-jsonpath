@@ -14,7 +14,7 @@ def serializedATN():
         buf.write("\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30")
         buf.write("\4\31\t\31\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36")
         buf.write("\t\36\4\37\t\37\4 \t \4!\t!\4\"\t\"\4#\t#\4$\t$\3\2\3")
-        buf.write("\2\3\3\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\6\3\6\3\7\3\7")
+        buf.write("\2\3\3\3\3\3\4\3\4\3\4\3\5\3\5\3\6\3\6\3\6\3\6\3\7\3\7")
         buf.write("\3\b\3\b\3\b\3\t\3\t\3\n\3\n\3\n\3\13\3\13\3\f\3\f\3\f")
         buf.write("\3\r\3\r\3\r\3\r\3\16\3\16\3\16\3\17\3\17\3\17\3\17\3")
         buf.write("\17\3\20\3\20\3\20\3\20\3\20\3\20\3\21\3\21\3\21\3\21")
@@ -39,7 +39,7 @@ def serializedATN():
         buf.write("\2\2!\3\2\2\2\2#\3\2\2\2\2%\3\2\2\2\2\'\3\2\2\2\2)\3\2")
         buf.write("\2\2\2+\3\2\2\2\2-\3\2\2\2\2/\3\2\2\2\2\61\3\2\2\2\2\63")
         buf.write("\3\2\2\2\2\65\3\2\2\2\2\67\3\2\2\2\2A\3\2\2\2\2G\3\2\2")
-        buf.write("\2\3I\3\2\2\2\5K\3\2\2\2\7N\3\2\2\2\tP\3\2\2\2\13R\3\2")
+        buf.write("\2\3I\3\2\2\2\5K\3\2\2\2\7M\3\2\2\2\tP\3\2\2\2\13R\3\2")
         buf.write("\2\2\rV\3\2\2\2\17X\3\2\2\2\21[\3\2\2\2\23]\3\2\2\2\25")
         buf.write("`\3\2\2\2\27b\3\2\2\2\31e\3\2\2\2\33i\3\2\2\2\35l\3\2")
         buf.write("\2\2\37q\3\2\2\2!w\3\2\2\2#|\3\2\2\2%~\3\2\2\2\'\u0080")
@@ -48,18 +48,18 @@ def serializedATN():
         buf.write("\3\2\2\2\67\u0095\3\2\2\29\u009f\3\2\2\2;\u00a4\3\2\2")
         buf.write("\2=\u00aa\3\2\2\2?\u00ac\3\2\2\2A\u00af\3\2\2\2C\u00c5")
         buf.write("\3\2\2\2E\u00c7\3\2\2\2G\u00ce\3\2\2\2IJ\7B\2\2J\4\3\2")
-        buf.write("\2\2KL\7\60\2\2LM\7\60\2\2M\6\3\2\2\2NO\7&\2\2O\b\3\2")
-        buf.write("\2\2PQ\7,\2\2Q\n\3\2\2\2RS\7c\2\2ST\7p\2\2TU\7f\2\2U\f")
-        buf.write("\3\2\2\2VW\7?\2\2W\16\3\2\2\2XY\7@\2\2YZ\7?\2\2Z\20\3")
-        buf.write("\2\2\2[\\\7@\2\2\\\22\3\2\2\2]^\7>\2\2^_\7?\2\2_\24\3")
-        buf.write("\2\2\2`a\7>\2\2a\26\3\2\2\2bc\7#\2\2cd\7?\2\2d\30\3\2")
-        buf.write("\2\2ef\7p\2\2fg\7q\2\2gh\7v\2\2h\32\3\2\2\2ij\7q\2\2j")
-        buf.write("k\7t\2\2k\34\3\2\2\2lm\7v\2\2mn\7t\2\2no\7w\2\2op\7g\2")
-        buf.write("\2p\36\3\2\2\2qr\7h\2\2rs\7c\2\2st\7n\2\2tu\7u\2\2uv\7")
-        buf.write("g\2\2v \3\2\2\2wx\7p\2\2xy\7w\2\2yz\7n\2\2z{\7n\2\2{\"")
-        buf.write("\3\2\2\2|}\7}\2\2}$\3\2\2\2~\177\7\177\2\2\177&\3\2\2")
-        buf.write("\2\u0080\u0081\7]\2\2\u0081(\3\2\2\2\u0082\u0083\7_\2")
-        buf.write("\2\u0083*\3\2\2\2\u0084\u0085\7<\2\2\u0085,\3\2\2\2\u0086")
+        buf.write("\2\2KL\7&\2\2L\6\3\2\2\2MN\7,\2\2NO\7,\2\2O\b\3\2\2\2")
+        buf.write("PQ\7,\2\2Q\n\3\2\2\2RS\7c\2\2ST\7p\2\2TU\7f\2\2U\f\3\2")
+        buf.write("\2\2VW\7?\2\2W\16\3\2\2\2XY\7@\2\2YZ\7?\2\2Z\20\3\2\2")
+        buf.write("\2[\\\7@\2\2\\\22\3\2\2\2]^\7>\2\2^_\7?\2\2_\24\3\2\2")
+        buf.write("\2`a\7>\2\2a\26\3\2\2\2bc\7#\2\2cd\7?\2\2d\30\3\2\2\2")
+        buf.write("ef\7p\2\2fg\7q\2\2gh\7v\2\2h\32\3\2\2\2ij\7q\2\2jk\7t")
+        buf.write("\2\2k\34\3\2\2\2lm\7v\2\2mn\7t\2\2no\7w\2\2op\7g\2\2p")
+        buf.write("\36\3\2\2\2qr\7h\2\2rs\7c\2\2st\7n\2\2tu\7u\2\2uv\7g\2")
+        buf.write("\2v \3\2\2\2wx\7p\2\2xy\7w\2\2yz\7n\2\2z{\7n\2\2{\"\3")
+        buf.write("\2\2\2|}\7}\2\2}$\3\2\2\2~\177\7\177\2\2\177&\3\2\2\2")
+        buf.write("\u0080\u0081\7]\2\2\u0081(\3\2\2\2\u0082\u0083\7_\2\2")
+        buf.write("\u0083*\3\2\2\2\u0084\u0085\7<\2\2\u0085,\3\2\2\2\u0086")
         buf.write("\u0087\7.\2\2\u0087.\3\2\2\2\u0088\u0089\7*\2\2\u0089")
         buf.write("\60\3\2\2\2\u008a\u008b\7+\2\2\u008b\62\3\2\2\2\u008c")
         buf.write("\u008d\7A\2\2\u008d\64\3\2\2\2\u008e\u0092\t\2\2\2\u008f")
@@ -104,8 +104,8 @@ class JSONPathLexer(Lexer):
     decisionsToDFA = [ DFA(ds, i) for i, ds in enumerate(atn.decisionToState) ]
 
     CURRENT_VALUE = 1
-    RECURSIVE_DESCENT = 2
-    ROOT_VALUE = 3
+    ROOT_VALUE = 2
+    RECURSIVE_DESCENT_SUBSCRIPT = 3
     WILDCARD_SUBSCRIPT = 4
     AND = 5
     EQ = 6
@@ -138,24 +138,25 @@ class JSONPathLexer(Lexer):
     modeNames = [ "DEFAULT_MODE" ]
 
     literalNames = [ "<INVALID>",
-            "'@'", "'..'", "'$'", "'*'", "'and'", "'='", "'>='", "'>'", 
+            "'@'", "'$'", "'**'", "'*'", "'and'", "'='", "'>='", "'>'", 
             "'<='", "'<'", "'!='", "'not'", "'or'", "'true'", "'false'", 
             "'null'", "'{'", "'}'", "'['", "']'", "':'", "','", "'('", "')'", 
             "'?'" ]
 
     symbolicNames = [ "<INVALID>",
-            "CURRENT_VALUE", "RECURSIVE_DESCENT", "ROOT_VALUE", "WILDCARD_SUBSCRIPT", 
-            "AND", "EQ", "GE", "GT", "LE", "LT", "NE", "NOT", "OR", "TRUE", 
-            "FALSE", "NULL", "BRACE_LEFT", "BRACE_RIGHT", "BRACKET_LEFT", 
-            "BRACKET_RIGHT", "COLON", "COMMA", "PAREN_LEFT", "PAREN_RIGHT", 
-            "QUESTION", "ID", "STRING", "NUMBER", "WS" ]
+            "CURRENT_VALUE", "ROOT_VALUE", "RECURSIVE_DESCENT_SUBSCRIPT", 
+            "WILDCARD_SUBSCRIPT", "AND", "EQ", "GE", "GT", "LE", "LT", "NE", 
+            "NOT", "OR", "TRUE", "FALSE", "NULL", "BRACE_LEFT", "BRACE_RIGHT", 
+            "BRACKET_LEFT", "BRACKET_RIGHT", "COLON", "COMMA", "PAREN_LEFT", 
+            "PAREN_RIGHT", "QUESTION", "ID", "STRING", "NUMBER", "WS" ]
 
-    ruleNames = [ "CURRENT_VALUE", "RECURSIVE_DESCENT", "ROOT_VALUE", "WILDCARD_SUBSCRIPT", 
-                  "AND", "EQ", "GE", "GT", "LE", "LT", "NE", "NOT", "OR", 
-                  "TRUE", "FALSE", "NULL", "BRACE_LEFT", "BRACE_RIGHT", 
-                  "BRACKET_LEFT", "BRACKET_RIGHT", "COLON", "COMMA", "PAREN_LEFT", 
-                  "PAREN_RIGHT", "QUESTION", "ID", "STRING", "ESC", "UNICODE", 
-                  "HEX", "SAFECODEPOINT", "NUMBER", "INT", "EXP", "WS" ]
+    ruleNames = [ "CURRENT_VALUE", "ROOT_VALUE", "RECURSIVE_DESCENT_SUBSCRIPT", 
+                  "WILDCARD_SUBSCRIPT", "AND", "EQ", "GE", "GT", "LE", "LT", 
+                  "NE", "NOT", "OR", "TRUE", "FALSE", "NULL", "BRACE_LEFT", 
+                  "BRACE_RIGHT", "BRACKET_LEFT", "BRACKET_RIGHT", "COLON", 
+                  "COMMA", "PAREN_LEFT", "PAREN_RIGHT", "QUESTION", "ID", 
+                  "STRING", "ESC", "UNICODE", "HEX", "SAFECODEPOINT", "NUMBER", 
+                  "INT", "EXP", "WS" ]
 
     grammarFileName = "JSONPath.g4"
 

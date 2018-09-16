@@ -1,8 +1,9 @@
 grammar JSONPath;
 
 CURRENT_VALUE : '@' ;
-RECURSIVE_DESCENT : '..' ;
 ROOT_VALUE : '$' ;
+
+RECURSIVE_DESCENT_SUBSCRIPT : '**' ;
 WILDCARD_SUBSCRIPT : '*' ;
 
 AND : 'and' ;
@@ -34,18 +35,16 @@ jsonpath
    ;
 
 subscript
-   : RECURSIVE_DESCENT subscriptables subscript?
-   | subscriptables subscript?
+   : BRACKET_LEFT ( RECURSIVE_DESCENT_SUBSCRIPT | WILDCARD_SUBSCRIPT | subscriptables ) BRACKET_RIGHT subscript?
    ;
 
 subscriptables
-   : BRACKET_LEFT subscriptable ( COMMA subscriptable )* BRACKET_RIGHT
+   : subscriptable ( COMMA subscriptable )*
    ;
 
 subscriptable
    : STRING
    | NUMBER{self.tryCast(int)}? ( COLON ( NUMBER{self.tryCast(int)}? )? ( COLON NUMBER{self.tryCast(int)}? )? )?
-   | WILDCARD_SUBSCRIPT
    | QUESTION PAREN_LEFT expression PAREN_RIGHT
    ;
 
